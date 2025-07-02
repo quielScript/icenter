@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+	--font-poppins: Poppins, sans-serif;
+
+	--color-licorice-black: #131118;
+	--color-heliotrope-gray: #a4a1aa;
+}
+
+a.active hr {
+	display: block;
+}
+
+a.active div.userNav {
+	background-color: #000;
+	color: #fff;
+}
+
+button {
+	cursor: pointer;
+}
