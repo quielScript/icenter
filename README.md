@@ -78,7 +78,7 @@ All your favorite Apple products in one place. **ICENTER** is sleek and minimali
 
 ## 🚀 Live Preview
 
-You can view the live preview of the project by visiting: [url does not exist yet](#)
+You can view the live preview of the project by visiting: [https://icenter-shop.vercel.app/](https://icenter-shop.vercel.app/)
 
 ## 💻 Tech Stack
 
@@ -155,7 +155,8 @@ Backend:
 ```
 
 > [!NOTE]  
-> In the backend, please install nodemon by running npm i nodemon in the backend directory terminal
+> In the backend, please install nodemon by running `npm i nodemo`n in the backend directory terminal
+> 
 > This is because I installed nodemon globally in my local machine : )
 
 5. **Start development environments**:
@@ -199,8 +200,33 @@ Features for next update:
 
 ## 🧑‍💻 Developer
 
-[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/quielScript)
-[![LinkedIn](https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin-white&logoColor=fff)](https://www.linkedin.com/in/exequielarco/)
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top">
+        <img src="./assets/dev.png" width="120px;" alt="Exequiel Arco"/>
+        <br />
+        <b>Exequiel Arco</b>
+      </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <a href="https://github.com/quielScript">
+            <img src="https://img.shields.io/badge/GitHub-100000.svg?style=for-the-badge&logo=github&logoColor=white"/>
+            </a>
+            <br/>
+            <a href="https://www.linkedin.com/in/exequielarco">
+            <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"/>
+            </a>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!--- [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/quielScript)
+ [![LinkedIn](https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin-white&logoColor=fff)](https://www.linkedin.com/in/exequielarco/) --->
+
 
 ## 🌟 Contributing
 
