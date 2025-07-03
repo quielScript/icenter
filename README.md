@@ -78,7 +78,7 @@ All your favorite Apple products in one place. **ICENTER** is sleek and minimali
 
 ## 🚀 Live Preview
 
-You can view the live preview of the project by visiting: [https://icenter-shop.vercel.app/](https://icenter-shop.vercel.app/)
+You can view the live preview of the project by visiting: <a href="https://icenter-shop.vercel.app/" target="_blank">https://icenter-shop.vercel.app/</a>
 
 ## 💻 Tech Stack
 
@@ -211,11 +211,11 @@ Features for next update:
     </tr>
     <tr>
         <td align="center">
-            <a href="https://github.com/quielScript">
+            <a href="https://github.com/quielScript" target="_blank">
             <img src="https://img.shields.io/badge/GitHub-100000.svg?style=for-the-badge&logo=github&logoColor=white"/>
             </a>
             <br/>
-            <a href="https://www.linkedin.com/in/exequielarco">
+            <a href="https://www.linkedin.com/in/exequielarco" target="_blank">
             <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"/>
             </a>
         </td>
