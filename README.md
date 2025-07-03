@@ -155,7 +155,7 @@ Backend:
 ```
 
 > [!NOTE]  
-> In the backend, please install nodemon by running `npm i nodemo`n in the backend directory terminal
+> In the backend, please install nodemon by running `npm i nodemon` in the backend directory terminal.
 > 
 > This is because I installed nodemon globally in my local machine : )
 
@@ -204,7 +204,7 @@ Features for next update:
   <tbody>
     <tr>
       <td align="center" valign="top">
-        <img src="./assets/dev.png" width="120px;" alt="Exequiel Arco"/>
+        <img src="./assets/dev.png" width="120;" alt="Exequiel Arco"/>
         <br />
         <b>Exequiel Arco</b>
       </td>
