@@ -20,7 +20,12 @@ const app = express();
 // Cors config
 app.use(
 	cors({
-		origin: [process.env.FRONTEND_DEV_ORIGIN, process.env.ADMIN_DEV_ORIGIN],
+		origin: [
+			process.env.FRONTEND_DEV_ORIGIN,
+			process.env.ADMIN_DEV_ORIGIN,
+			process.env.FRONTEND_PROD_ORIGIN,
+			process.env.ADMIN_PROD_ORIGIN,
+		],
 		credentials: true,
 	})
 );
