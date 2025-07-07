@@ -34,6 +34,8 @@ router.patch("/resetPassword/:token", resetPassword);
 router.use(protect);
 
 router.get("/me", getMe, getUser);
+router.post("/forgotPassword", forgotPassword);
+router.patch("resetPassword/:token", resetPassword);
 router.patch("/updateMyPassword", updatePassword);
 router.patch(
 	"/updateMe",

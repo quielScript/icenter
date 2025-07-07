@@ -1,8 +1,10 @@
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 import User from "../models/userModel.js";
 import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
+import Email from "../utils/email.js";
 
 // Create token
 const signToken = (id) => {
@@ -161,8 +163,6 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 	createSendToken(user, 200, req, res);
 });
 
-// TODO: IMPLEMENT FORGOT PASSWORD AND RESET PASSWORD
-// TODO: EMAIL RESET PASSWORD URL
 export const forgotPassword = catchAsync(async (req, res, next) => {
 	const user = await User.findOne({ email: req.body.email });
 
@@ -178,7 +178,13 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
 			"host"
 		)}/api/v1/users/resetPassword/${resetToken}`;
 
-		// TODO: send reset url to email
+		const message = `Forgot you password? Submit a PATCH request with you new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
+
+		await new Email(
+			user,
+			"Your password reset token (valid for 10 min)",
+			message
+		).sendPasswordReset();
 
 		res.status(200).json({
 			status: "success",
