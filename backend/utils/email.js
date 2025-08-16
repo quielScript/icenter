@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import Transport from "nodemailer-brevo-transport";
 
 class Email {
 	constructor(user, subject, message) {
@@ -11,18 +12,22 @@ class Email {
 
 	// Create transport
 	newTransport() {
-		// TODO: IMPLEMENT PRODUCTION EMAIL
+		// Production emails Brevo
 		if (process.env.NODE_ENV === "production") {
-			return;
+			return nodemailer.createTransport(
+				new Transport({
+					apiKey: `${process.env.BREVO_API_KEY}`,
+				})
+			);
 		}
 
 		// Development emails MailTrap
 		return nodemailer.createTransport({
-			host: process.env.EMAIL_HOST,
-			port: process.env.EMAIL_PORT,
+			host: process.env.EMAIL_HOST_MAILTRAP,
+			port: process.env.EMAIL_PORT_MAILTRAP,
 			auth: {
-				user: process.env.EMAIL_USERNAME,
-				pass: process.env.EMAIL_PASSWORD,
+				user: process.env.EMAIL_USERNAME_MAILTRAP,
+				pass: process.env.EMAIL_PASSWORD_MAILTRAP,
 			},
 		});
 	}

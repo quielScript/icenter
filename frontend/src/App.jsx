@@ -23,6 +23,7 @@ import PrivateRoute from "./features/auth/PrivateRoute";
 import PersonalInfo from "./features/user/PersonalInfo";
 import MyOrders, { loader as myOrdersLoader } from "./features/user/MyOrders";
 import UserSettings from "./features/user/UserSettings";
+import ForgotPassword from "./features/user/ForgotPassword";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
 			{
 				path: "/signup",
 				element: <Signup />,
+			},
+			{
+				path: "/forgot-password",
+				element: <ForgotPassword />,
 			},
 			{
 				path: "/user",

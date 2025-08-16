@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchUser, updateUser } from "../../services/apiUser";
-import { updateUserPassword } from "../../services/apiAuth";
+import { forgotUserPassword, updateUserPassword } from "../../services/apiAuth";
 
 export const updateUserInfo = createAsyncThunk(
 	"user/updateUserInfo",
@@ -40,11 +40,25 @@ export const userUpdatePassword = createAsyncThunk(
 	}
 );
 
+export const userForgotPassword = createAsyncThunk(
+	"user/userForgotPassword",
+	async (email, { rejectWithValue }) => {
+		try {
+			const res = await forgotUserPassword(email);
+
+			return res.data;
+		} catch (err) {
+			return rejectWithValue(err.message);
+		}
+	}
+);
+
 const initialState = {
 	user: {},
 	token: "",
 	status: "idle",
 	error: "",
+	message: "",
 };
 
 const userSlice = createSlice({
@@ -91,11 +105,25 @@ const userSlice = createSlice({
 			.addCase(userUpdatePassword.rejected, (state, action) => {
 				state.status = "error";
 				state.error = action.payload;
+			})
+
+			// Forgot user password
+			.addCase(userForgotPassword.pending, (state) => {
+				state.status = "loading";
+			})
+			.addCase(userForgotPassword.fulfilled, (state, action) => {
+				state.status = "idle";
+				state.message = action.payload.message;
+			})
+			.addCase(userForgotPassword.rejected, (state, action) => {
+				state.status = "error";
+				state.error = action.payload || "There was a problem sending the email";
 			});
 	},
 });
 
 // Selectors
 export const getUser = (state) => state.user.user;
+export const getStatus = (state) => state.user.status;
 
 export default userSlice.reducer;

@@ -25,6 +25,7 @@
 		"morgan": "^1.10.0",
 		"multer": "^2.0.1",
 		"nodemailer": "^7.0.3",
+		"nodemailer-brevo-transport": "^2.2.1",
 		"slugify": "^1.6.6",
 		"validator": "^13.15.15",
 		"xss-clean": "^0.1.4"

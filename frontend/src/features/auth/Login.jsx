@@ -79,7 +79,7 @@ function Login() {
 				</div>
 
 				<div className="flex items-center justify-between mb-5">
-					<Link>Forgot password?</Link>
+					<Link to="/forgot-password">Forgot password?</Link>
 					<Link to="/signup">Create Account</Link>
 				</div>
 
