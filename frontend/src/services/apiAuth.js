@@ -48,9 +48,29 @@ export const updateUserPassword = async (credentials, token) => {
 
 export const forgotUserPassword = async (email) => {
 	try {
-		const res = await axios.post(`${BACKEND_URL}/api/v1/users/forgotPassword`, {
-			email,
-		});
+		const res = await axios.post(
+			`${BACKEND_URL}/api/v1/users/forgotPassword`,
+			{
+				email,
+			},
+			{ withCredentials: true }
+		);
+
+		return res;
+	} catch (err) {
+		const message =
+			err.response?.data?.message || "Something went wrong. Please try again.";
+		throw new Error(message);
+	}
+};
+
+export const resetUserPassword = async (token, newCredentials) => {
+	try {
+		const res = await axios.patch(
+			`${BACKEND_URL}/api/v1/users/resetPassword/${token}`,
+			newCredentials,
+			{ withCredentials: true }
+		);
 
 		return res;
 	} catch (err) {

@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchUser, updateUser } from "../../services/apiUser";
-import { forgotUserPassword, updateUserPassword } from "../../services/apiAuth";
+import {
+	forgotUserPassword,
+	resetUserPassword,
+	updateUserPassword,
+} from "../../services/apiAuth";
 
 export const updateUserInfo = createAsyncThunk(
 	"user/updateUserInfo",
@@ -45,6 +49,19 @@ export const userForgotPassword = createAsyncThunk(
 	async (email, { rejectWithValue }) => {
 		try {
 			const res = await forgotUserPassword(email);
+
+			return res.data;
+		} catch (err) {
+			return rejectWithValue(err.message);
+		}
+	}
+);
+
+export const userResetPassword = createAsyncThunk(
+	"user/userResetPassword",
+	async ({ token, newCredentials }, { rejectWithValue }) => {
+		try {
+			const res = await resetUserPassword(token, newCredentials);
 
 			return res.data;
 		} catch (err) {
@@ -110,12 +127,27 @@ const userSlice = createSlice({
 			// Forgot user password
 			.addCase(userForgotPassword.pending, (state) => {
 				state.status = "loading";
+				state.error = "";
 			})
 			.addCase(userForgotPassword.fulfilled, (state, action) => {
 				state.status = "idle";
 				state.message = action.payload.message;
 			})
 			.addCase(userForgotPassword.rejected, (state, action) => {
+				state.status = "error";
+				state.error = action.payload || "There was a problem sending the email";
+			})
+
+			// Reset user password
+			.addCase(userResetPassword.pending, (state) => {
+				state.status = "loading";
+			})
+			.addCase(userResetPassword.fulfilled, (state, action) => {
+				state.status = "idle";
+				state.user = action.payload.user;
+				state.token = action.payload.token;
+			})
+			.addCase(userResetPassword.rejected, (state, action) => {
 				state.status = "error";
 				state.error = action.payload || "There was a problem sending the email";
 			});

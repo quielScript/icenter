@@ -24,6 +24,7 @@ import PersonalInfo from "./features/user/PersonalInfo";
 import MyOrders, { loader as myOrdersLoader } from "./features/user/MyOrders";
 import UserSettings from "./features/user/UserSettings";
 import ForgotPassword from "./features/user/ForgotPassword";
+import ResetPassword from "./features/user/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
 			{
 				path: "/forgot-password",
 				element: <ForgotPassword />,
+			},
+			{
+				path: "/reset-password/:token",
+				element: <ResetPassword />,
 			},
 			{
 				path: "/user",

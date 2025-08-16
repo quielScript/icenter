@@ -8,7 +8,6 @@ import { getStatus, userForgotPassword } from "./userSlice";
 
 function ForgotPassword() {
 	const [email, setEmail] = useState("");
-	const [isEmailSent, setIsEmailSent] = useState(false);
 	const status = useSelector(getStatus);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
