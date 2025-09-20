@@ -5,6 +5,7 @@ const DB = process.env.MONGODB_URI?.replace(
 	encodeURIComponent(process.env.MONGODB_PASSWORD)
 );
 
+// TODO: FIX MONGODB CONNECTION
 const connectDB = async () => {
 	try {
 		await mongoose.connect(DB);

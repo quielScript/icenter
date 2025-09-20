@@ -1,12 +1,16 @@
 import nodemailer from "nodemailer";
 import Transport from "nodemailer-brevo-transport";
+import {
+	PASSWORD_RESET_REQUEST_TEMPLATE,
+	PASSWORD_RESET_SUCCESSFUL,
+} from "../views/emailTemplates.js";
+
+// TODO: IMPLEMENT GOOGLE SMTP
 
 class Email {
-	constructor(user, subject, message) {
+	constructor(user) {
 		this.to = user.email;
 		this.firstName = user.firstName;
-		this.subject = subject;
-		this.message = message;
 		this.from = `Exequiel Arco <${process.env.EMAIL_FROM}>`;
 	}
 
@@ -33,21 +37,36 @@ class Email {
 	}
 
 	// Send the actual email
-	async send() {
-		// Define mail options
+	async sendPasswordReset(resetURL, subject) {
+		const html = PASSWORD_RESET_REQUEST_TEMPLATE.replace(
+			"{userName}",
+			this.firstName
+		).replace("{resetURL}", resetURL);
+
 		const mailOptions = {
 			from: this.from,
 			to: this.to,
-			subject: this.subject,
-			text: this.message,
+			subject,
+			html,
 		};
 
-		// Create a transport and send email
 		await this.newTransport().sendMail(mailOptions);
 	}
 
-	async sendPasswordReset() {
-		await this.send();
+	async sendPasswordResetSuccess() {
+		const html = PASSWORD_RESET_SUCCESSFUL.replace(
+			"{userName}",
+			this.firstName
+		);
+
+		const mailOptions = {
+			from: this.from,
+			to: this.to,
+			subject: "Password Reset Successful",
+			html,
+		};
+
+		await this.newTransport().sendMail(mailOptions);
 	}
 }
 

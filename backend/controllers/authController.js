@@ -174,15 +174,17 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
 	await user.save({ validateBeforeSave: false });
 
 	try {
-		const resetURL = `http://localhost:5173/reset-password/${resetToken}`;
+		const origin =
+			process.env.NODE_ENV === "production"
+				? process.env.FRONTEND_PROD_ORIGIN
+				: process.env.FRONTEND_DEV_ORIGIN;
 
-		const message = `To reset your password, please visit ${resetURL}`;
+		const resetURL = `${origin}/reset-password/${resetToken}`;
 
-		await new Email(
-			user,
-			"Your password reset token (valid for 10 min)",
-			message
-		).sendPasswordReset();
+		await new Email(user).sendPasswordReset(
+			resetURL,
+			"Your password reset token (valid for 10 min)"
+		);
 
 		res.status(200).json({
 			status: "success",
@@ -223,6 +225,8 @@ export const resetPassword = catchAsync(async (req, res, next) => {
 	user.passwordResetToken = undefined;
 	user.passwordResetExpires = undefined;
 	await user.save();
+
+	await new Email(user).sendPasswordResetSuccess();
 
 	// Log the user in
 	createSendToken(user, 200, req, res);
